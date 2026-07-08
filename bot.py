@@ -1,6 +1,19 @@
 import discord
 import datetime
+import os
 from discord.ext import commands
+
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+
+@bot.event
+async def on_ready():
+    print(f"ログイン成功: {bot.user}")
+
 
 @bot.command()
 async def map(ctx):
@@ -31,5 +44,6 @@ async def map(ctx):
         f"現在のマップは：{MAPS[index]}",
         file=discord.File(IMAGE_PATHS[index])
     )
-import os
+
+
 bot.run(os.getenv("DISCORD_TOKEN"))
