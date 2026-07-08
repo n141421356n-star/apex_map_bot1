@@ -46,7 +46,7 @@ async def map(ctx):
     )
 
 
-@bot.command()
+@bot.command(name="next")
 async def nextmap(ctx):
     MAPS = [
         "ワールズエッジ",
