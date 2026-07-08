@@ -30,7 +30,10 @@ async def map(ctx):
 
     start_time = datetime.datetime(2026, 7, 4, 2, 0, 0)
 
-    now = datetime.datetime.now()
+    JST = datetime.timezone(datetime.timedelta(hours=9))
+
+ start_time = datetime.datetime(2026, 7, 4, 2, 0, 0, tzinfo=JST)
+ now = datetime.datetime.now(JST)
 
     interval = 4.5 * 60 * 60
 
