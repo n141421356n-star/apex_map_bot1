@@ -68,12 +68,12 @@ async def nextmap(ctx):
     next_index = (index + 1) % len(MAPS)
 
     next_change_time = start_time + datetime.timedelta(
-        seconds=(index + 1) * interval
+        seconds=(int(elapsed // interval) + 1) * interval
     )
 
     await ctx.send(
         f"次のマップは：{MAPS[next_index]}\n"
-        f"切り替え時刻：{next_change_time.strftime('%Y/%m/%d %H:%M')}"
+        f"切り替え時刻：{next_change_time.strftime('%H:%M')}"
     )
 
 
