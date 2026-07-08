@@ -54,12 +54,6 @@ async def nextmap(ctx):
         "ストームポイント"
     ]
 
-    IMAGE_PATHS = [
-        "images/worlds_edge.png",
-        "images/e_district.png",
-        "images/storm_point.png"
-    ]
-
     JST = datetime.timezone(datetime.timedelta(hours=9))
 
     start_time = datetime.datetime(2026, 7, 4, 2, 0, 0, tzinfo=JST)
@@ -73,9 +67,13 @@ async def nextmap(ctx):
 
     next_index = (index + 1) % len(MAPS)
 
+    next_change_time = start_time + datetime.timedelta(
+        seconds=(index + 1) * interval
+    )
+
     await ctx.send(
-        f"次のマップは：{MAPS[next_index]}",
-        file=discord.File(IMAGE_PATHS[next_index])
+        f"次のマップは：{MAPS[next_index]}\n"
+        f"切り替え時刻：{next_change_time.strftime('%Y/%m/%d %H:%M')}"
     )
 
 
