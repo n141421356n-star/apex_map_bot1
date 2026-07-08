@@ -38,7 +38,12 @@ async def map(ctx):
 
     index = int(elapsed // interval) % len(MAPS)
 
-    await ctx.send(f"現在のマップは：{MAPS[index]}")
-
+    await ctx.send(
+    f"""現在時刻: {now}
+開始時刻: {start_time}
+経過秒: {elapsed}
+index: {index}
+現在マップ: {MAPS[index]}"""
+)
 import os
 bot.run(os.getenv("DISCORD_TOKEN"))
