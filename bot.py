@@ -1,11 +1,13 @@
 import discord
 import datetime
 from discord.ext import commands
+import os
 
-MAPS = ["ワールズエッジ",
+MAPS = [
+    "ワールズエッジ",
     "イーディス",
-    "ストームポイント"]
-    
+    "ストームポイント"
+]
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -22,31 +24,21 @@ async def test(ctx):
 
 @bot.command()
 async def map(ctx):
-    MAPS = [
-        "ワールズエッジ",
-        "イーディス",
-        "ストームポイント"
-    ]
-
-    start_time = datetime.datetime(2026, 7, 4, 2, 0, 0)
-
     JST = datetime.timezone(datetime.timedelta(hours=9))
 
- start_time = datetime.datetime(2026, 7, 4, 2, 0, 0, tzinfo=JST)
- now = datetime.datetime.now(JST)
+    start_time = datetime.datetime(2026, 7, 4, 2, 0, 0, tzinfo=JST)
+    now = datetime.datetime.now(JST)
 
     interval = 4.5 * 60 * 60
-
     elapsed = (now - start_time).total_seconds()
-
     index = int(elapsed // interval) % len(MAPS)
 
     await ctx.send(
-    f"""現在時刻: {now}
+        f"""現在時刻: {now}
 開始時刻: {start_time}
 経過秒: {elapsed}
 index: {index}
 現在マップ: {MAPS[index]}"""
-)
-import os
+    )
+
 bot.run(os.getenv("DISCORD_TOKEN"))
